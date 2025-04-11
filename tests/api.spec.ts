@@ -62,7 +62,7 @@ test.describe('GraphQL API Tests', () => {
     };
 
     const response = await graphqlRequest(graphqlEndpoint, query, variables);
-    expect(response.ok()).toBeTruthy(); // GraphQL errors still return 200 OK
+    expect(response.ok()).toBeTruthy();
 
     const body = await response.json();
     expect(body.errors).toBeDefined();
@@ -95,7 +95,6 @@ test.describe('GraphQL API Tests', () => {
     const body = await response.json();
 
     expect(body.data.userProfile.email).toBe('validuser@example.com');
-    // TODO: You can also compare body.data with UI fetched data
   });
 
   test('Error Handling - 400 Bad Request', async () => {
@@ -106,7 +105,7 @@ test.describe('GraphQL API Tests', () => {
     `;
 
     const response = await graphqlRequest(graphqlEndpoint, badQuery);
-    expect(response.status()).toBe(400); // If server properly throws 400
+    expect(response.status()).toBe(400); 
   });
 
   test('Error Handling - 401 Unauthorized', async () => {
@@ -118,16 +117,15 @@ test.describe('GraphQL API Tests', () => {
       }
     `;
 
-    const response = await graphqlRequest(graphqlEndpoint, securedQuery); // No token
+    const response = await graphqlRequest(graphqlEndpoint, securedQuery); 
     const body = await response.json();
 
-    // GraphQL may return 200 but with errors
+
     expect(body.errors).toBeDefined();
     expect(body.errors[0].message).toContain("Cannot query field \"userProfile\" on type \"Query\". Did you mean \"userConfig\"?");
   });
 
   test('Error Handling - 500 Server Error Simulation', async () => {
-    // Simulate bad mutation or force server error (depends on backend)
     const invalidMutation = `
       mutation CauseServerError {
         forceError
