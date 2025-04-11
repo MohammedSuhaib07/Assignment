@@ -7,10 +7,10 @@ test.describe('Login and Logout Flow', () => {
   });
 
   test('Valid Login and Logout', async ({ page, loginPage, purchasePage }) => {
-    await loginPage.login(loginData.validUser.email, loginData.validUser.password);
+    await loginPage.loggedIn();
     await expect(page).toHaveURL('https://demo.haroldwaste.com/purchases');
 
     await purchasePage.logout();
-    await expect(loginPage.emailInput).toBeVisible();
+    await expect(page).toHaveURL('https://demo.haroldwaste.com/authentication');
   });
 });

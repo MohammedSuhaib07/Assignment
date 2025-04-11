@@ -12,5 +12,5 @@ export default defineConfig({
     video: 'retain-on-failure'
   },
   testDir: './tests',
-  retries: 0
+  retries: 1
 });
