@@ -6,14 +6,11 @@ test.describe('Login and Logout Flow', () => {
     await loginPage.goto();
   });
 
-  test('Valid Login and Logout', async ({ page, loginPage, purchasePage: dashboardPage }) => {
+  test('Valid Login and Logout', async ({ page, loginPage, purchasePage }) => {
     await loginPage.login(loginData.validUser.email, loginData.validUser.password);
-
     await expect(page).toHaveURL('https://demo.haroldwaste.com/purchases');
 
-    await dashboardPage.logout();
-
-    await expect(page).toHaveURL('https://demo.haroldwaste.com/authentication');
+    await purchasePage.logout();
     await expect(loginPage.emailInput).toBeVisible();
   });
 });

@@ -34,6 +34,7 @@ export class PurchasePage {
   async logout() {
     await this.headerMenuButton.click();
     await this.logoutButton.click();
+    await expect(this.page).toHaveURL('https://demo.haroldwaste.com/authentication');
   }
   async navigateToPurchasesTrading(): Promise<PurchasePage> {
     await expect(this.purchaseTrading).toBeVisible();

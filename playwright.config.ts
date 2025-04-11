@@ -1,10 +1,12 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
+  globalSetup: './global-setup',
   reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }]],
   use: {
     headless: false,
     baseURL: 'https://demo.haroldwaste.com/',
+    storageState: 'storageState.json',
     browserName: 'chromium',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure'

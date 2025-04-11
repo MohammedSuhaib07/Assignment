@@ -22,4 +22,7 @@ export class LoginPage {
     await this.passwordInput.fill(password);
     await this.loginButton.click();
   }
+  async loggedIn(){
+    await this.page.goto('https://demo.haroldwaste.com/purchases');
+  }
 }
