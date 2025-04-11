@@ -4,7 +4,7 @@ export default defineConfig({
   globalSetup: './global-setup',
   reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }]],
   use: {
-    headless: false,
+    headless: process.env.CI ? true : false,
     baseURL: 'https://demo.haroldwaste.com/',
     storageState: 'storageState.json',
     browserName: 'chromium',
