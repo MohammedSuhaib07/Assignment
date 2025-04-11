@@ -3,7 +3,7 @@ name: Playwright Tests
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 
 jobs:
@@ -35,7 +35,7 @@ jobs:
           name: playwright-report
           path: playwright-report
 
-      - name: Commit and Push Playwright Report to main branch
+      - name: Commit and Push Playwright Report to master branch
         if: always()
         run: |
           git config --global user.name "github-actions[bot]"
@@ -46,4 +46,4 @@ jobs:
           fi
           git add reports || echo "Nothing to add"
           git commit -m "chore: update Playwright report [skip ci]" || echo "No changes to commit"
-          git push origin main || echo "No changes to push"
+          git push origin master || echo "No changes to push"
